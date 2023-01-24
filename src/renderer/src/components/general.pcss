@@ -1,0 +1,58 @@
+.nmBox {
+    user-select: none;
+    height: 70px;
+    width: 270px;
+    background-color: #ffffff13;
+    box-shadow: 0 0 2px #0003, 0 0 1px #fff3 inset;
+    border-radius: 8px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    & .portraitBox {
+        aspect-ratio: 1/1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    & .portrait {
+        width: 52px;
+        height: 52px;
+        margin-left: 6px;
+        border-radius: 50%;
+        box-shadow: 0 0 6px #0004, 1px 1px 3px #fff6 inset;
+    }
+
+    & .introduce {
+        height: 47px;
+        margin-left: 15px;
+
+        & .name {
+            font-family: HarmoyOS_Sans;
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        & .logonStatus {
+            font-family: HarmoyOS_Sans;
+            color: #fff6;
+            font-size: 14px;
+        }
+    }
+
+    position: relative;
+    & .toggleIcon{
+        color: #fff6;
+        font-size: 18px;
+        position: absolute;
+        right: 6px;
+        bottom: 6px;
+        transition: color 200ms;
+        &:hover{
+            color: #fff9;
+        }
+    }
+}

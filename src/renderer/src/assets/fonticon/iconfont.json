@@ -1,0 +1,23 @@
+{
+  "id": "3869135",
+  "name": "fwml",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "23081480",
+      "name": "更改主文档",
+      "font_class": "genggaizhuwendang",
+      "unicode": "e66d",
+      "unicode_decimal": 58989
+    },
+    {
+      "icon_id": "8802669",
+      "name": "切换",
+      "font_class": "qiehuan",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    }
+  ]
+}

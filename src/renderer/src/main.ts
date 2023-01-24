@@ -1,7 +1,7 @@
 import './assets/index.pcss'
 import App from './App.svelte'
 import 'normalize.css'
-import './assets/font.pcss'
+import './assets/font.css'
 import './assets/fonticon/iconfont.css'
 
 const app = new App({

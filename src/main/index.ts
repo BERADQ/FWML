@@ -80,10 +80,13 @@ app.on('window-all-closed', () => {
 });
 //处理mc启动
 const initializeTheLauncher = () => {
+	const Java_Home:string = process.env.JAVA_HOME+"\\bin\\java.exe";
+	console.log("Java路径",process.env.JAVA_HOME);
 	console.log("MC启动器部分初始化");
 	let opts: ILauncherOptions = {
 		//游戏根目录
 		root: 'C:/Users/adqbe/AppData/Roaming/.minecraft',
+		//版本信息
 		version: {
 			number: '1.19.2',
 			type: 'release',
@@ -95,7 +98,7 @@ const initializeTheLauncher = () => {
 			min: '4G'
 		},
 		authorization: MCAu.getAuth("developer"),
-		javaPath: 'J:/zulu17.38.21-ca-jdk17.0.5-win_x64/bin/java.exe'
+		javaPath: Java_Home ?? "请选择你的爪哇"
 	};
 	const launcher = new MCC();
 	ipcMain.handle("launch", (_) => {
@@ -104,19 +107,21 @@ const initializeTheLauncher = () => {
 		launcher.on('debug', (e) => console.log(e));
 		launcher.on('data', (e) => console.log(e));
 	});
-	ipcMain.handle("selectAVersion", async (_) => {
+	ipcMain.handle("selectAJava", async (_) => {
 		const e = await dialog.showOpenDialog({
 			title: '拣出爪哇',
 			buttonLabel: '捡出',
 			filters: [{name: 'java', extensions: ['exe']}]
 		});
-		if (!e.canceled) {
-			opts.javaPath = e.filePaths?.[0] ?? '';
-			console.log(opts.javaPath);
-		}
+		//这里其实就是if，只是写成了这种诡异的形式罢了
+		(!e.canceled) ? opts.javaPath = e.filePaths?.[0] ?? Java_Home ?? "请选择你的爪哇":null;
 		return opts.javaPath;
 	});
 	ipcMain.handle("getJavaPath", () => {
+		return opts.javaPath;
+	});
+	ipcMain.handle("setJavaPath", (_,thePath) => {
+		opts.javaPath = thePath;
 		return opts.javaPath;
 	});
 };
@@ -127,5 +132,5 @@ const defaultIpc = ()=>{
 	console.log("node一般ipc部分初始化");
 	ipcMain.handle("getIsWindows11", async ()=>{
 		return IS_WINDOWS_11;
-	})
+	});
 }

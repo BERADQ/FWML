@@ -6,7 +6,13 @@
 	});
 
 	function choose() {
-		window.electron.ipcRenderer.invoke("selectAVersion").then(e => {
+		window.electron.ipcRenderer.invoke("selectAJava").then(e => {
+			console.log(e);
+			javaPath = e;
+		});
+	}
+	function set() {
+		window.electron.ipcRenderer.invoke("setJavaPath",javaPath).then(e => {
 			console.log(e);
 			javaPath = e;
 		});
@@ -17,16 +23,14 @@
     <div class="java">
         爪哇
     </div>
-    <div class="sw">
-        {javaPath}
-    </div>
+    <input type="text" class="sw" contenteditable="true" bind:value={javaPath} on:blur={set}/>
     <div class="swBtn iconfont" on:click={choose}>&#xe66d;</div>
 </div>
 
 <style lang="postcss">
     .main {
         user-select: none;
-        height: 24px;
+        height: 28px;
         width: 270px;
         background-color: #ffffff13;
         box-shadow: 0 0 2px #0003, 0 0 1px #fff3 inset;
@@ -37,18 +41,26 @@
         color: #fff9;
 
         & .java {
+            font-family: HarmoyOS_Sans;
             white-space: nowrap;
             border-right: 2px solid #fff3;
             padding: 0 6px;
         }
 
         & .sw {
-            direction: rtl;
+            height: 100%;
+            font-size: 16px;
+            background-color: transparent;
+            border: 0;
+            color: #fff9;
+            font-family: HarmoyOS_Sans;
+            font-weight: 2;
             padding-left: 6px;
             padding-right: 6px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            outline: none;
         }
 
         & .swBtn {

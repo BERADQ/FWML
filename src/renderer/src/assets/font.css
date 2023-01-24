@@ -1,0 +1,34 @@
+@font-face {
+    font-family: SmileySans;
+    src: url("../../../../resources/font/smileySans/SmileySans-Oblique.ttf?asset"), url("../../../../resources/font/smileySans/SmileySans-Oblique.otf?asset");
+}
+
+@font-face {
+    font-family: HarmoyOS_Sans;
+    src: url("../../../../resources/font/HarmonyOS_Sans/HarmonyOS_Sans_SC_Black.ttf?asset");
+    font-weight: 3;
+}
+
+@font-face {
+    font-family: HarmoyOS_Sans;
+    src: url("../../../../resources/font/HarmonyOS_Sans/HarmonyOS_Sans_SC_Medium.ttf?asset");
+    font-weight: 2;
+}
+
+@font-face {
+    font-family: HarmoyOS_Sans;
+    src: url("../../../../resources/font/HarmonyOS_Sans/HarmonyOS_Sans_SC_Thin.ttf?asset");
+    font-weight: 1;
+}
+
+@font-face {
+    font-family: SourceHan_Sans;
+    src: url("../../../../resources/font/SourceHan_Sans/SourceHanSansCN-Normal.otf?asset");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: SourceHan_Sans;
+    src: url("../../../../resources/font/SourceHan_Sans/SourceHanSansCN-Bold.otf?asset");
+    font-weight: bold;
+}

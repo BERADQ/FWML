@@ -1,4 +1,4 @@
-# FWML
+# FWML <废物MC启动器>
 ## A MeCraft Launcherrrrrrrrr！yee~~
 ## 你先别急，启动功能还没做完，但是你先别急
 ## 你先看看我家的压缩毛巾

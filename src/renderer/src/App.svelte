@@ -8,6 +8,6 @@
 
 <style lang="postcss">
     .notWin11{
-        background-color: #333;
+        background-color: #222;
     }
 </style>

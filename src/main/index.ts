@@ -1,4 +1,4 @@
-import {app, shell, BrowserWindow, ipcMain, BrowserWindowConstructorOptions, dialog} from 'electron';
+import {app, shell, BrowserWindow, ipcMain, BrowserWindowConstructorOptions, dialog,nativeTheme} from 'electron';
 import {join} from 'path';
 import {electronApp, optimizer, is} from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
@@ -30,6 +30,7 @@ function createWindow(): void {
 		//mainWindow.setMicaTabbedEffect();
 	} else {
 		mainWindow = new BrowserWindow(opts);
+		nativeTheme.themeSource = "dark"
 	}
 	mainWindow.on('ready-to-show', () => {
 		mainWindow.show();
@@ -47,6 +48,7 @@ function createWindow(): void {
 		mainWindow.loadFile(join(__dirname, '../renderer/index.html'));
 	}
 	initializeTheLauncher();
+	defaultIpc();
 }
 
 // 加载完成后执行以下内容
@@ -118,3 +120,12 @@ const initializeTheLauncher = () => {
 		return opts.javaPath;
 	});
 };
+//香草（原版，伪造（forge
+
+//这里处理一般ipc
+const defaultIpc = ()=>{
+	console.log("node一般ipc部分初始化");
+	ipcMain.handle("getIsWindows11", async ()=>{
+		return IS_WINDOWS_11;
+	})
+}

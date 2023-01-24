@@ -4,6 +4,7 @@
 		console.log(e);
 		javaPath = e;
 	});
+
 	function choose() {
 		window.electron.ipcRenderer.invoke("selectAVersion").then(e => {
 			console.log(e);
@@ -33,6 +34,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        color: #fff9;
 
         & .java {
             white-space: nowrap;

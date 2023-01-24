@@ -1,2 +1,2 @@
 # FWML
-## A MeCraft Luncherrrrrrrrr！yee~~
+## A MeCraft Launcherrrrrrrrr！yee~~

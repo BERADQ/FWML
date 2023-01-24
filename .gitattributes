@@ -6,4 +6,5 @@
 *.js linguist-language=TypeScript
 *.cjs linguist-language=TypeScript
 *.mjs linguist-language=TypeScript
-*.css linguist-language=PostCSS
+*.css linguist-language=TypeScript
+*.pcss linguist-language=TypeScript

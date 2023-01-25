@@ -17,6 +17,10 @@
 			javaPath = e;
 		});
 	}
+
+	window.electron.ipcRenderer.on("lloog",()=>{
+		console.log("aabbcc");
+    })
 </script>
 
 <div class="main">

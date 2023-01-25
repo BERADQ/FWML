@@ -1,5 +1,6 @@
 html, body, main, #app {
     height: 100%;
+    overflow: hidden;
 }
 
 p {
@@ -7,11 +8,22 @@ p {
     padding: 0;
     border: 0;
 }
-li{
+
+li {
     list-style: none;
 }
-ul{
+
+ul {
     padding: 0;
     margin: 0;
     border: 0;
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #fff6;
+    border-radius: 5px;
 }

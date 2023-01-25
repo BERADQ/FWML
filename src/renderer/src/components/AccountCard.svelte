@@ -12,7 +12,7 @@
                 Zhang_Haoyang
             </p>
             <p class="logonStatus">
-                进入微软
+                与微软进入
             </p>
         </div>
         <span class="toggleIcon iconfont">&#xe656;</span>

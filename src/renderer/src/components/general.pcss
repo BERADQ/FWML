@@ -46,14 +46,17 @@
     }
 
     position: relative;
-    & .toggleIcon{
+
+    & .toggleIcon {
         color: #fff6;
         font-size: 18px;
         position: absolute;
         right: 6px;
         bottom: 6px;
         transition: color 200ms;
-        &:hover{
+        z-index: 10;
+
+        &:hover {
             color: #fff9;
         }
     }

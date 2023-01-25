@@ -8,8 +8,10 @@ import {Client as MCC, Authenticator as MCAu, ILauncherOptions} from 'minecraft-
 function createWindow(): void {
 	// 创建浏览器窗口
 	const opts: BrowserWindowConstructorOptions = {
-		width: 900,
-		height: 670,
+		width: 760,
+		height: 460,
+		minWidth: 760,
+		minHeight: 460,
 		show: false,
 		autoHideMenuBar: true,
 		...(process.platform === 'linux' ? {icon} : {}),
@@ -28,9 +30,10 @@ function createWindow(): void {
 		mainWindow.setMicaAcrylicEffect();
 		//mainWindow.setMicaEffect();
 		//mainWindow.setMicaTabbedEffect();
+		
 	} else {
 		mainWindow = new BrowserWindow(opts);
-		nativeTheme.themeSource = "dark"
+		nativeTheme.themeSource = 'dark'
 	}
 	mainWindow.on('ready-to-show', () => {
 		mainWindow.show();
@@ -47,6 +50,7 @@ function createWindow(): void {
 	} else {
 		mainWindow.loadFile(join(__dirname, '../renderer/index.html'));
 	}
+	
 	initializeTheLauncher();
 	defaultIpc();
 }
@@ -114,8 +118,7 @@ const initializeTheLauncher = () => {
 			filters: [{name: 'java', extensions: ['exe']}]
 		});
 		//这里其实就是if，只是写成了这种诡异的形式罢了
-		(!e.canceled) ? opts.javaPath = e.filePaths?.[0] ?? Java_Home ?? "请选择你的爪哇":null;
-		return opts.javaPath;
+		return (!e.canceled) ? opts.javaPath = e.filePaths?.[0] ?? Java_Home ?? "请选择你的爪哇":null;
 	});
 	ipcMain.handle("getJavaPath", () => {
 		return opts.javaPath;

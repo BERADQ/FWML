@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "689263",
+      "name": "立方体 立体 多面体 方块",
+      "font_class": "lifangtilitiduomiantifangkuai",
+      "unicode": "e7fa",
+      "unicode_decimal": 59386
+    },
+    {
+      "icon_id": "681186",
+      "name": "扳手",
+      "font_class": "banshou",
+      "unicode": "e747",
+      "unicode_decimal": 59207
+    },
+    {
+      "icon_id": "689264",
+      "name": "立方体 立体 多面体 方块2",
+      "font_class": "lifangtilitiduomiantifangkuai2",
+      "unicode": "e7fb",
+      "unicode_decimal": 59387
+    },
+    {
       "icon_id": "23081480",
       "name": "更改主文档",
       "font_class": "genggaizhuwendang",

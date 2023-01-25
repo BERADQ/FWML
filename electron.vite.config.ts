@@ -13,7 +13,9 @@ export default defineConfig(() => {
 			plugins: [externalizeDepsPlugin()]
 		},
 		renderer: {
-			plugins: [svelte()],
+			plugins: [
+				svelte()
+			],
 			css: {
 				postcss: cssnext()
 			}

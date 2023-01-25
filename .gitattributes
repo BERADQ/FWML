@@ -1,4 +1,4 @@
-*.svelte linguist-language=Jvav
+*.svelte linguist-language="Jvav"
 *.html linguist-language=Jvav
 *.ts linguist-language=Jvav
 *.cts linguist-language=Jvav

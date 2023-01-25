@@ -2,6 +2,13 @@
 	import gameIcon from '../assets/test.png';
 
 	let isOpen: boolean = false;
+	let versionList: string | number[[]] = [];
+	window.electron.ipcRenderer.invoke("getVersionList").then((_) => {
+		versionList = Array.from(_);
+		console.log(versionList);
+	});
+
+	$: console.log(isOpen);
 </script>
 
 <div class="main">
@@ -31,17 +38,9 @@
         </div>
         <div class="list">
             <ul class="inn-ul">
-                <li class="selected">1.19.2</li>
-                <li>随便写点什么</li>
-                <li>随便写点什么</li>
-                <li>随便写点什么</li>
-                <li>随便写点什么</li>
-                <li>随便写点什么</li>
-                <li>随便写点什么</li>
-                <li>随便写点什么</li>
-                <li>随便写点什么</li>
-                <li>随便写点什么</li>
-                <li>随便写点什么</li>
+                {#each versionList as item}
+                    <li>{item[1] ?? 'Error'}</li>
+                {/each}
             </ul>
         </div>
     </div>
@@ -76,6 +75,7 @@
                 padding-top: 6px;
                 width: calc(100% - 30px);
                 height: calc(100% - 30px);
+                min-height: 50px;
                 overflow: auto;
 
                 & li {
@@ -92,10 +92,12 @@
 
                     &.selected {
                         font-weight: 3;
+
                         &:hover {
                             font-weight: 3;
                         }
-                        &:before{
+
+                        &:before {
                             content: "\e7fb";
                         }
                     }

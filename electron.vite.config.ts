@@ -18,6 +18,9 @@ export default defineConfig(() => {
 			],
 			css: {
 				postcss: cssnext()
+			},
+			build: {
+				assetsInlineLimit: 0
 			}
 		}
 	};

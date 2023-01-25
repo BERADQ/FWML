@@ -1,9 +1,27 @@
-import {app, shell, BrowserWindow, ipcMain, BrowserWindowConstructorOptions, dialog,nativeTheme} from 'electron';
+import {app, shell, BrowserWindow, ipcMain, BrowserWindowConstructorOptions, dialog, nativeTheme} from 'electron';
 import {join} from 'path';
 import {electronApp, optimizer, is} from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
 import {IS_WINDOWS_11, MicaBrowserWindow} from 'mica-electron';
 import {Client as MCC, Authenticator as MCAu, ILauncherOptions} from 'minecraft-launcher-core';
+import fs from "fs";
+import uuid from "uuid";
+//这里进行初始化文件读取
+const V_map = new Map();
+
+function readAndOpen(): void {
+	try {
+		let vef: string[] = fs.readdirSync("C:/Users/adqbe/AppData/Roaming/.minecraft/versions");
+		if (vef) {
+			vef.forEach((v) => {
+				V_map.set(uuid.v4(), v);
+				console.log(v);
+			});
+		}
+	} catch (e) {
+		console.error(e);
+	}
+}
 
 function createWindow(): void {
 	// 创建浏览器窗口
@@ -15,6 +33,7 @@ function createWindow(): void {
 		show: false,
 		autoHideMenuBar: true,
 		...(process.platform === 'linux' ? {icon} : {}),
+		icon: icon,
 		webPreferences: {
 			preload: join(__dirname, '../preload/index.js'),
 			sandbox: false
@@ -33,7 +52,7 @@ function createWindow(): void {
 		
 	} else {
 		mainWindow = new BrowserWindow(opts);
-		nativeTheme.themeSource = 'dark'
+		nativeTheme.themeSource = 'dark';
 	}
 	mainWindow.on('ready-to-show', () => {
 		mainWindow.show();
@@ -66,7 +85,9 @@ app.whenReady().then(() => {
 	app.on('browser-window-created', (_, window) => {
 		optimizer.watchWindowShortcuts(window);
 	});
-	
+	//初始化文件
+	readAndOpen();
+	//创建窗口
 	createWindow();
 	
 	app.on('activate', function () {
@@ -84,8 +105,8 @@ app.on('window-all-closed', () => {
 });
 //处理mc启动
 const initializeTheLauncher = () => {
-	const Java_Home:string = process.env.JAVA_HOME+"\\bin\\java.exe";
-	console.log("Java路径",process.env.JAVA_HOME);
+	const Java_Home: string = process.env.JAVA_HOME + "\\bin\\java.exe";
+	console.log("Java路径", process.env.JAVA_HOME);
 	console.log("MC启动器部分初始化");
 	let opts: ILauncherOptions = {
 		//游戏根目录
@@ -118,12 +139,12 @@ const initializeTheLauncher = () => {
 			filters: [{name: 'java', extensions: ['exe']}]
 		});
 		//这里其实就是if，只是写成了这种诡异的形式罢了
-		return (!e.canceled) ? opts.javaPath = e.filePaths?.[0] ?? Java_Home ?? "请选择你的爪哇":null;
+		return (!e.canceled) ? opts.javaPath = e.filePaths?.[0] ?? Java_Home ?? "请选择你的爪哇" : opts.javaPath;
 	});
 	ipcMain.handle("getJavaPath", () => {
 		return opts.javaPath;
 	});
-	ipcMain.handle("setJavaPath", (_,thePath) => {
+	ipcMain.handle("setJavaPath", (_, thePath) => {
 		opts.javaPath = thePath;
 		return opts.javaPath;
 	});
@@ -131,9 +152,12 @@ const initializeTheLauncher = () => {
 //香草（原版，伪造（forge
 
 //这里处理一般ipc
-const defaultIpc = ()=>{
+const defaultIpc = () => {
 	console.log("node一般ipc部分初始化");
-	ipcMain.handle("getIsWindows11", async ()=>{
+	ipcMain.handle("getIsWindows11", async () => {
 		return IS_WINDOWS_11;
 	});
-}
+	ipcMain.handle("getVersionList", async () => {
+		return V_map;
+	});
+};

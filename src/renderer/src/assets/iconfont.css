@@ -1,0 +1,32 @@
+@font-face {
+    font-family: "iconfont";
+    src: url('../../../../resources/iconfont/iconfont.ttf?asset');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+}
+
+.icon-lifangtilitiduomiantifangkuai:before {
+    content: "\e7fa";
+}
+
+.icon-banshou:before {
+    content: "\e747";
+}
+
+.icon-lifangtilitiduomiantifangkuai2:before {
+    content: "\e7fb";
+}
+
+.icon-genggaizhuwendang:before {
+    content: "\e66d";
+}
+
+.icon-qiehuan:before {
+    content: "\e656";
+}
+
